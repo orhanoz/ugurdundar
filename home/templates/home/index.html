@@ -1,0 +1,61 @@
+{% extends "site_base.html" %}
+
+{% load pinax_blog_tags %}
+
+{% block body_class %}blog{% endblock %}
+
+
+
+
+
+
+{% block body %}
+    <div class="row blog-container">
+        <div class="col-md-3 sidebar">
+            {% block sidebar %}
+
+        <blockquote class="blockquote-reverse">
+          <h2>
+              <a href="{% url "pinax_blog:blog" %}">{{ SITE_NAME }}</a>
+          </h2>
+
+        <h4>
+                Sirketimize hakkinda en yeni haberler
+
+            </h4>
+            </blockquote>
+                <p>
+                    <a href="{% url "pinax_blog:blog_feed" "all" "atom" %}"><i class="fa fa-rss"></i> Atom Feed</a>
+                </p>
+                <div class="search">
+                    {% if current_section == "all" %}
+                        {% url "pinax_blog:blog" as search_url %}
+                    {% else %}
+                        {% url "pinax_blog:blog_section" current_section.slug as search_url %}
+                    {% endif %}
+
+                </div>
+
+                {% if post_list %}
+                    <div class="list-group">
+                        {% for post in post_list %}
+                            <div class="list-group-item">
+                                <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                                {% include "pinax/blog/dateline.html" %}
+                                <div class="teaser">{{ post.teaser_html|safe }}</div>
+                                <p class="more"><a href="{{ post.get_absolute_url }}" class="post-link">Devam et...</a></p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {% include "pagination/builtin_pagination_reverse.html" %}
+                {% else %}
+                    <p class="alert alert-info lead">No blog posts have been published.</p>
+                {% endif %}
+
+            {% endblock %}
+        </div>
+        <div class="col-md-8 blog-content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

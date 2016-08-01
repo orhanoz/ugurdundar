@@ -1,0 +1,302 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+<head>
+    <meta charset="utf-8" />
+    <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} | {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
+    {% block viewport %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> {% endblock %} {% block styles %}{% endblock %} {% block html5shim %}
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <![endif]-->
+    {% endblock %} {% block extra_head_base %} {% block extra_head %}{% endblock %} {% endblock %}
+</head>
+
+<body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}" {% block body_extra_attributes %}{% endblock %}>
+    <div class="{% block wrapper_class %}{% endblock %}">
+
+        {% block topbar_base %}
+        <div class="container headerfx">
+            <header class="clearfix">
+
+                <div class="col-lg-8 col-md-7 col-sm-6"><img src="{% static 'home/img/logo.png' %}" /></div>
+
+                <nav>
+                    <a href="" class="icon-facebook"></a>
+                    <a href="" class="icon-google-plus"></a>
+                    <a href="" class="icon-linkedin"></a>
+                    <a href="" class="icon-twitter"></a>
+                    <a href="" class="icon-github"></a>
+                </nav>
+            </header>
+            <div class="main">
+                <nav id="cbp-hrmenu" class="cbp-hrmenu">
+                    <ul>
+                        <li>
+                            <a href="#">Hakkimizda</a>
+                            <div class="cbp-hrsub">
+                                <div class="cbp-hrsub-inner">
+                                    <div>
+                                        <h4>Kurumsal</h4>
+                                        <ul>
+                                            <li><a href="http://www.google.com">Hakkimizda</a></li>
+                                            <li><a href="#">Kalite Politikamiz</a></li>
+                                            <li><a href="#">Vizyon - Misyon</a></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>Referanslar</h4>
+                                        <ul>
+                                            <li><a href="#">Endüstriyel Tesesler</a></li>
+                                            <li><a href="#">Enerji Nakil Hatlari</a></li>
+                                            <li><a href="#">Otomasyon ve Kontrol</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- /cbp-hrsub-inner -->
+                            </div>
+                            <!-- /cbp-hrsub -->
+                        </li>
+                        <li>
+                            <a href="#">Hizmetler</a>
+                            <div class="cbp-hrsub">
+                                <div class="cbp-hrsub-inner">
+                                    <div>
+                                        <h4>Tedarik - Satis</h4>
+                                        <ul>
+                                            <li><a href="#">Ürünler</a></li>
+                                            <li><a href="#">Satis Politikamiz</a></li>
+                                            <li><a href="#">Chemokid</a></li>
+                                        </ul>
+                                        <h4>Otomasyon</h4>
+                                        <ul>
+                                            <li><a href="#">Endüstriyel</a></li>
+                                            <li><a href="#">XYZ OTOMASYON</a></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>Kurulum</h4>
+                                        <ul>
+                                            <li><a href="#">Gadget Finder</a></li>
+                                            <li><a href="#">Green Tree</a></li>
+
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4>Sahada Test</h4>
+                                        <ul>
+                                            <li><a href="#">Catch </a></li>
+                                            <li><a href="#">Snoopy</a></li>
+                                            <li><a href="#">Fallen</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- /cbp-hrsub-inner -->
+                            </div>
+                            <!-- /cbp-hrsub -->
+                        </li>
+                        <li>
+                            <a href="#">Egitim</a>
+                            <div class="cbp-hrsub">
+                                <div class="cbp-hrsub-inner">
+                                    <div>
+                                        <h4>Staj - Ciraklik</h4>
+                                        <ul>
+                                            <li><a href="#">Atak Elektrik - Otomasyon</a></li>
+                                            <li><a href="#">Atak Elektrik - Muhendislik</a></li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                      <h4>Atak Garaj</h4>
+                                      <ul>
+                                          <li><a href="#">Atal Garaj nedir?</a></li>
+                                          <li><a href="#">Atak Garaj'a katil</a></li>
+                                      </ul>
+                                    </div>
+                                    <div>
+                                        <h4>Kütüphane</h4>
+                                        <ul>
+                                            <li><a href="#">Teknik Kütüphane</a></li>
+                                            <li><a href="#">Sartname Örnekleri</a></li>
+                                            <li><a href="#">Linkler</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- /cbp-hrsub-inner -->
+                            </div>
+                            <!-- /cbp-hrsub -->
+                        </li>
+                        <li>
+                            <a href="#">Insan Kaynaklari</a>
+                            <div class="cbp-hrsub">
+                                <div class="cbp-hrsub-inner">
+                                    <div>
+                                        <h4>Basvuru formlari</h4>
+                                        <ul>
+                                            <li><a href="{% url "forms:is-basvurusu" %}">Is Basvuru Formu</a></li>
+                                            <li><a href="#">Staj Basvuru Formu</li>
+
+                                        </ul>
+                                    </div>
+
+                                    <div>
+                                        <h4>Kariyer</h4>
+                                        <ul>
+                                            <li><a href="#">Atak Elektrikte Calismak</a></li>
+                                            <li><a href="#">Atak Elektrik Mühendislik</a></li>
+                                            <li><a href="#">Atak Elektrik Otomasyon</a></li>
+                                            <li><a href="#">Is Olanaklari</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- /cbp-hrsub-inner -->
+                            </div>
+                            <!-- /cbp-hrsub -->
+                        </li>
+                        <li>
+                            <a href="#">Iletisim</a>
+                            <div class="cbp-hrsub">
+                                <div class="cbp-hrsub-inner">
+                                    <div>
+                                        <h4>Bize Ulasin</h4>
+                                        <ul>
+                                            <li><a href="{% url "iletisim:izmir" %}">Iletisim Bilgilerimiz (Izmir)</a></li>
+                                            <li><a href="{% url "iletisim:manisa" %}">Iletisim Bilgilerimiz (Manisa)</a></li>
+                                            <li><a href="{% url "forms:mail-gönder" %}">Mail Gönder</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- /cbp-hrsub-inner -->
+                            </div>
+                            <!-- /cbp-hrsub -->
+                        </li>
+                            <a class="single-nav-link" href="{% url "pinax_blog:blog" %}">Haberler</a>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        {% endblock %} {% block body_base %}
+        <section id="content_body">
+            <div class="container">
+                {% include "_messages.html" %} {% block body %} {% endblock %}
+            </div>
+        </section>
+        {% endblock %} {% block footer_base %}
+
+
+
+        <div class="container footer ">
+
+            <div class="footersocial">
+
+
+            <h2 style="text-align : center">Birlikte Calistigimiz Firmalar</h2>
+
+            <div class="companies col-lg-11 col-md-11 col-xs-11">
+                <div>
+                    <img src="{% static 'home/img/firmalar/teleman.jpg' %}">
+                </div>
+                <div>
+                    <img src="{% static 'home/img/firmalar/cukurova.jpg' %}">
+                </div>
+                <div>
+                    <img src="{% static 'home/img/firmalar/entes.png' %}">
+                </div>
+                <div>
+                    <img src="{% static 'home/img/firmalar/Hensel_Logo.svg.png' %}">
+                </div>
+                <div>
+                    <img src="{% static 'home/img/firmalar/Logo_SE_Green.jpg' %}">
+                </div>
+                <div>
+                    <img src="{% static 'home/img/firmalar/Merlin_Gerin_Logo.svg.png' %}">
+                </div>
+                <div>
+                    <img src="{% static 'home/img/firmalar/metesan.png' %}">
+                </div>
+                <div>
+                    <img src="{% static 'home/img/firmalar/philips.jpg' %}">
+                </div>
+                <div>
+                    <img src="{% static 'home/img/firmalar/siemens.png' %}">
+                </div>
+            </div>
+
+
+
+
+                <div>
+                    <div class="col-lg-12 col-xs-12 col-sm-12">
+                        <div class="col-lg-3 col-xs-12 col-sm-6">
+                            <h2> <i class="icon-comments-alt"></i> Recent Post </h2>
+                            <ul>
+                                <li><a href="blog.html">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </a>
+                                    <div class="recentposticon"> <span class="mr10"> <i class="icon-calendar"></i> Novemner 26, 2013 </span> <span class="mr10"><a ><i class="icon-comment"></i> 5 Comments</a></span></div>
+                                </li>
+                                <li><a href="blog.html">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </a>
+                                    <div class="recentposticon"> <span class="mr10"> <i class="icon-calendar"></i> Novemner 26, 2013 </span> <span class="mr10"><a ><i class="icon-comment"></i> 5 Comments</a></span></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-3 col-xs-12 col-sm-6 contact">
+                            <h2> <i class="icon-phone-sign"></i> Contact </h2>
+                            <ul>
+                                <li class="location"> Inn Rd, London, UK</li>
+                                <li class="phone"> +123 456 7890, +123 456 7890</li>
+                                <li class="mobile"> +123 456 7890, +123 456 78900</li>
+                                <li class="email"> test@test.com</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-xs-12 col-sm-6 icons">
+                            <ul>
+                                <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                                <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href=""><i class="fa fa-github"></i></a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="col-lg-12">
+                    <div class="col-lg-12">
+                        <ul class="quicklinks">
+                            <li><a href="index.html">Ana Sayfa</a></li>
+                            <li><a href="portfolio.html">Hakkimizda</a></li>
+                            <li><a href="blog.html">Application</a></li>
+                            <li><a href="product.html">Egitim</a></li>
+                            <li><a href="aboutus.html">Insan Kaynaklari</a> </li>
+                        </ul>
+                    </div>
+            </div>
+
+            <section class="copyrightbottom col-lg-12">
+                <div>
+                    <div class="row">
+                        <div class="pull-left"> Copyright © 2013. Atak Elektrik. All rights reserved </div>
+                        <div class="pull-right"> Developed by <a href="https://cagince.github.io">cagin ce</a></div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+        </div>
+
+
+        {% endblock %}
+    </div>
+
+    {% block scripts %}{% endblock %} {% block theme_script %}
+    <script src="{% static " pinax/js/theme.js " %}"></script>
+    {% endblock %} {% block extra_body_base %} {% block extra_body %}{% endblock %} {% endblock %}
+</body>
+
+</html>

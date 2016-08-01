@@ -1,0 +1,35 @@
+{% load pinax_webanalytics_tags %} {% load staticfiles %}
+
+<script src="{% static 'home/js/jquery.min.js' %}"></script>
+<script src="{% static 'home/js/cbpHorizontalMenu.min.js' %}"></script>
+<!-- Resource jQuery -->
+<script src="{% static 'home/js/slick.min.js' %}"></script>
+<!-- Resource jQuery -->
+
+
+
+
+<script>
+    $(".companies").slick({
+
+        dots: true,
+        mobileFirst: true,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        arrows: false,
+        infinite: true,
+        centerMode: true,
+        slidesToShow: 1,
+        variableWidth: true,
+        slidesToScroll: 1
+
+    });
+
+    $(function() {
+        cbpHorizontalMenu.init();
+
+    });
+</script>
+
+
+{% analytics %}

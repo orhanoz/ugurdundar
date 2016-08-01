@@ -1,0 +1,14 @@
+click==5.1
+colorama==0.3.3
+Django==1.9.5
+django-appconf==1.0.2
+django-formtools==1.0
+Markdown==2.6.6
+Pillow==3.3.0
+Pinax==0.9a2
+pinax-blog==5.0.1
+pinax-cli==1.0.0
+pinax-webanalytics==2.0.2
+Pygments==2.1.3
+pytz==2015.7
+requests==2.7.0
