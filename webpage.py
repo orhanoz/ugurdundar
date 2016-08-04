@@ -21,8 +21,10 @@ def get():
 def firsttime(soup):
     for i in soup.find_all("p"):
         if i.find_all('em')!=[]:
-            print i.find_all('em')
-        
+            a=str(i.find_all('em'))
+            new_a=a.split('>')[1]
+            a=new_a.split('<')[0]
+            print bcolors.HEADER+a.decode('unicode_escape')+bcolors.ENDC
 
 def check1(soup):
     result1=[]
