@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from bs4 import SoupStrainer
 import requests
 from time import sleep
 import sys,getopt
@@ -46,6 +47,7 @@ if url=='' or url[:7]!='http://':
         print bcolors.FAIL+"i.e.   http://aa.com"+bcolors.ENDC
         sys.exit()
 
+#gets the soup element
 def get():
     #r = requests.get("http://ikc.edu.tr/Duyuru")
     r = requests.get(url)
@@ -53,6 +55,23 @@ def get():
     soup=BeautifulSoup(data,'html.parser')
     return soup
 
+#prints the page and tags
+def printpage(soup):
+    print soup.prettify()
+    temp=[]
+    for tag in soup.find_all(True):
+        temp.append(str(tag.name))
+    print list(set(temp))
+
+#lets user pick a tag
+def userpick():
+    t=raw_input("Pick a tag to follow:")
+    return SoupStrainer(t)
+
+def letsoup(sel_tag):
+    return BeautifulSoup(data,'html.parser',parse_only=sel_tag)
+
+#prints for the first time without tags in decoded format
 def firsttime(soup):
     for i in soup.find_all("p"):
         if i.find_all('em')!=[]:
@@ -61,37 +80,69 @@ def firsttime(soup):
             a=new_a.split('<')[0]
             print bcolors.HEADER+a.decode('unicode_escape')+bcolors.ENDC
 
+#checks saves result1
 def check1(soup):
     result1=[]
     for i in soup.find_all('p'):       
         result1.append(i.find_all('em'))
     return result1
-
+#checks saves result2
 def check2(soup):
     result2=[]
     for i in soup.find_all('p'):
         result2.append(i.find_all('em'))
     return result2
-
+#crosschecks result1 result2
 def crosscheck(result1,result2):
     if result1[0]!=result2[0]:
         print bcolors.OKGREEN+result2[0]+bcolors.ENDC
-        get()
+        soup=letsoup(sel_tag)
         check1(soup)
         check2(soup)
     else:
         print bcolors.WARNING+"no change"+bcolors.ENDC
-        
+
+#does the timed job
 def hourlywork():
-    get()
+    soup=letsoup(sel_tag)
     check2(soup)
     crosscheck(result1, result2)
     
-soup=get()
-firsttime(soup)
-result1=check1(soup)
-result2=check2(soup)
-while(True):
-    hourlywork()
-    sleep(1800)
-    
+r=requests.get(url)
+data=r.text
+soup=BeautifulSoup(data,'html.parser')
+printpage(soup)
+sel_tag=userpick()
+printpage(soup)
+pick=raw_input("Wanna pick more tags?(y/n):")
+if pick=='y':
+    sel_tag=userpick()
+    soup=letsoup(sel_tag)
+    printpage(soup)
+    pick=raw_input("wanna pick more ?(y/n):")
+    if pick=='y':
+        sel_tag=userpick()
+        soup=letsoup(sel_tag)
+        firsttime(soup)
+        result1=check1(soup)
+        retult2=check2(soup)
+        while(True):
+            hourlywork()
+            sleep(1800)
+    else:
+        firsttime(soup)
+        result1=check1(soup)
+        result2=check2(soup)
+        while(True):
+            hourlywork()
+            sleep(1800)
+elif pick=='n':
+    print("I'll print your selected tag and look for new stuff every 30 mins...")
+    firsttime(soup)
+    result1=check1(soup)
+    result2=check2(soup)
+    while(True):
+        hourlywork()
+        sleep(1800)
+else:
+    sys.exit()
