@@ -28,6 +28,13 @@ soup=BeautifulSoup(data,'html.parser')
 printpage(soup)
 selected_tag=userpick()
 newsoup=letsoup(selected_tag)
-print newsoup.prettify()
-
-
+printpage(newsoup)
+pickorgo=raw_input("Wanna pick more tags?y/n:")
+if pickorgo=='y':
+    sel_tag=userpick()
+    newsoup=letsoup(sel_tag)
+elif pickorgo=='n':
+    raw_input("kopkop")
+else:
+    sys.exit()
+printpage(newsoup)
