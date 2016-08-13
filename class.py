@@ -24,7 +24,7 @@ class ugur():
         tag_sel=raw_input("Tag name:")
         return tag_sel
     def whattodo(self):
-        usr_sel=raw_input("Either you can see inside a tag or remove a tag(s/r):")
+        usr_sel=raw_input("Either you can see inside a tag or remove them(s/r):")
         if usr_sel=='s':
             return ugur.printcontain(self, x.soup, tagname)
         elif usr_sel=='r':
