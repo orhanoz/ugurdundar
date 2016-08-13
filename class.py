@@ -23,19 +23,21 @@ class ugur():
     def selectagname(self):
         tag_sel=raw_input("Tag name:")
         return tag_sel
-    def whattodo(self):
+    def whattodo(self,tagname):
         usr_sel=raw_input("Either you can see inside a tag or remove them(s/r):")
         if usr_sel=='s':
             return ugur.printcontain(self, x.soup, tagname)
         elif usr_sel=='r':
-            return ugur.removetags(self, x.soup, tagname)  
+            return ugur.removetags(self, x.soup, tagname)
+        else:
+            return ugur.whattodo(self,tagname)  
 x=ugur()
 x.get()
 x.removetags(x.soup, "script")
 print x.soup.prettify()
 x.printtags(x.soup)
 tagname=x.selectagname()
-x.whattodo()
-print x.soup.prettify()
+x.whattodo(tagname)
+#print x.soup.prettify()
 
 
