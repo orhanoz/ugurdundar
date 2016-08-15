@@ -17,6 +17,7 @@ print "Url you provided to Ugur Dundar is %s"%url
 #url="http://ikcu.edu.tr/Duyuru"
 class ugur():
     def get(self):
+        self.durum=True
         r=requests.get(url)
         data=r.text
         self.soup=BeautifulSoup(data,"html.parser")
@@ -42,6 +43,8 @@ class ugur():
             return ugur.printcontain(self, x.soup, tagname)
         elif usr_sel=='r':
             return ugur.removetags(self, x.soup, tagname)
+        elif usr_sel=='d':
+            self.durum=False
         else:
             print "Wrong key use s for see inside or r for remove...\nNow try again"
             return ugur.whattodo(self,tagname)  
@@ -55,9 +58,10 @@ if __name__=='__main__':
         x.removetags(x.soup, "script")
     else:
         pass
-    
     print x.soup.prettify()
-    x.printtags(x.soup)
-    tagname=x.selectagname()
-    x.whattodo(tagname)
-    #print x.soup.prettify()
+    while(x.durum==True):
+        x.printtags(x.soup)
+        tagname=x.selectagname()
+        x.whattodo(tagname)
+        
+    print tagname
