@@ -1,6 +1,6 @@
-import requests
+import requests,argparse
 from bs4 import BeautifulSoup
-import argparse
+from time import sleep
 
 class U(object):
     pass
@@ -38,6 +38,15 @@ else:
     url='http://'+u.url[0]
 print "Url you provided to Ugur Dundar is %s"%url
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 class ugur():
     def get(self):
@@ -70,10 +79,26 @@ class ugur():
         elif usr_sel=='d':
             self.durum=False
         else:
-            print "Wrong key use s for see inside or r for remove...\nNow try again"
+            print "Wrong key use s for see inside or r for remove or d for done...\nNow try again"
             return ugur.whattodo(self,tagname)  
-
-
+    def first_time(self,soup,tagname):
+        self.check_1=[]
+        for tag in soup.find_all(tagname):
+            self.check_1.append(tag.get_text())
+            print bcolors.HEADER+tag.get_text()+bcolors.ENDC
+    def check2(self,tagname):
+        ugur.get(self)
+        self.check_2=[]
+        for tag in self.soup.find_all(tagname):
+            self.check_2.append(tag.get_text())
+    def crosscheck(self):
+        if self.check_1!=self.check_2:
+            tmp=set(self.check_1) ^ set(self.check_2)
+            print bcolors.OKGREEN+tmp.pop()+bcolors.ENDC
+            self.check_1=self.check_2
+        else:
+            print bcolors.WARNING+"no change"+bcolors.ENDC
+        
 if __name__=='__main__':
     x=ugur()
     x.get()
@@ -88,4 +113,9 @@ if __name__=='__main__':
         tagname=x.selectagname()
         x.whattodo(tagname)
         
-    print tagname
+    x.first_time(x.soup, tagname)
+    while(True):
+        x.check2(tagname)
+        x.crosscheck()
+        sleep(10)
+        
