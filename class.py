@@ -37,7 +37,7 @@ class ugur():
         tag_sel=raw_input("Tag name:")
         return tag_sel
     def whattodo(self,tagname):
-        usr_sel=raw_input("Either you can see inside a tag or remove them(s/r):")
+        usr_sel=raw_input("You have 3 options:\n<s> for seeing inside the tag\n<r>for removing the tag\n<d> if you are happy with your choice\n(s/r/d):")
         if usr_sel=='s':
             return ugur.printcontain(self, x.soup, tagname)
         elif usr_sel=='r':
@@ -46,10 +46,16 @@ class ugur():
             print "Wrong key use s for see inside or r for remove...\nNow try again"
             return ugur.whattodo(self,tagname)  
 
+
 if __name__=='__main__':
     x=ugur()
     x.get()
-    x.removetags(x.soup, "script")
+    clr=raw_input("Do you want Ugur Dundar to clear scripts for you ?? (y/n):")
+    if clr=='y':
+        x.removetags(x.soup, "script")
+    else:
+        pass
+    
     print x.soup.prettify()
     x.printtags(x.soup)
     tagname=x.selectagname()
