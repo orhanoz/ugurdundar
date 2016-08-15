@@ -2,6 +2,12 @@ import requests
 from bs4 import BeautifulSoup
 import argparse
 
+class U(object):
+    pass
+u=U()
+parser=argparse.ArgumentParser(description="Ugur Dundar will help you extract information and regularly check for new updates but only if you help him")
+parser.add_argument('-u','--url',nargs=1,default=" ",metavar='foo.com',help="expects an url without http://")
+args = parser.parse_args(namespace=u)
 def greeting():
     print'\n                \033[0;37;41mUgur Dundar Greets You\033[0m'
     print '[0;1;30;40mXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX@[0;5;33;40m@[0;1;30;43m88[0;5;33;40m:[0;1;30;43m8[0;33;47m8[0;1;30;43m88[0;5;33;40m8[0;1;30;41m8[0;1;30;40mXXXXXXXXXXXXXXXXX[0m'
@@ -25,14 +31,8 @@ def greeting():
     print '[0;37;46m8[0;5;37;44m8[0;37;46m8[0;5;36;44m [0;36;47m88[0;5;36;44m [0;36;47m@[0;5;37;44m8[0;37;46m@[0;36;47m88[0;5;36;44m [0;36;47m8[0;5;36;44mX[0;5;34;40m@[0;34;40mS[0;5;31;40m8[0;1;30;43m8[0;5;37;41m8[0;1;30;43m8[0;1;30;47m8[0;5;37;41m8[0;33;47m8[0;1;30;43m8[0;5;33;41mS[0;5;33;40m [0;5;31;40mX[0;32;40m;[0;34;40mt[0;1;30;40mX[0;31;40mt[0;5;30;40m8[0;5;33;40m;;.[0;5;33;41m8[0;5;35;40m;[0;1;37;47m:t[0;33;47m8[0;31;40mS[0;1;30;40mXX[0;31;40mt[0;34;40m;[0;31;40mt[0;32;40mt[0;1;30;40mX[0;34;40m;[0;31;40mt[0;1;30;40m8@88X@@8[0;5;36;40mX[0m'
 greeting()
 
-class U(object):
-    pass
-u=U()
-parser=argparse.ArgumentParser(description="Ugur Dundar will help you extract information from web but only if you help him")
-parser.add_argument('-u','--url',nargs=1,default=" ",metavar='foo.com',help="expects an url without http://")
-args = parser.parse_args(namespace=u)
 if u.url[0]==" ":
-    ur=raw_input("Ugur Dundar expects an url without http://\n")
+    ur=raw_input("Ugur Dundar expects an url without http://\n-->")
     url='http://'+ur
 else:
     url='http://'+u.url[0]
