@@ -5,19 +5,18 @@ right now you can use the class.py file as version 1.0
  ------------------------------------------
 so what it does:
 
-  -you pass an url
+      -you pass an url
   
-  -it prints out the tags
+      -it prints out the tags
  
-  -do your removings and searchs in between tags
+      -do your removings and searchs in between tags
   
-  -after finding the tag let Ugur Dundar do his job 
+      -after finding the tag let Ugur Dundar do his job 
   
-  -he will print all the info inside the tag
+      -he will print all the info inside the tag
   
-  -and start looking for new stuff to come
-  
-  this is basicly how ugur dundar operates
+      -and start looking for new stuff to come
+      
   ----------------------------------------------
   usage : python class.py -h or --help will show you the correct usage
   
