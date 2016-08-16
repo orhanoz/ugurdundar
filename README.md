@@ -4,6 +4,7 @@ right now you can use the class.py file as version 1.0
    it is working but still needs some work
  ------------------------------------------
 so what it does:
+
   -you pass an url
   
   -it prints out the tags
