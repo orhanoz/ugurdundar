@@ -114,8 +114,9 @@ if __name__=='__main__':
         x.whattodo(tagname)
         
     x.first_time(x.soup, tagname)
+    interval=int(raw_input("Gimme time interval for your searchs in secs:"))
     while(True):
         x.check2(tagname)
         x.crosscheck()
-        sleep(10)
+        sleep(interval)
         
